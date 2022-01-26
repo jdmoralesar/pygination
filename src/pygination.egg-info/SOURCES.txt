@@ -1,7 +1,0 @@
-README.md
-setup.py
-src/pygination.egg-info/PKG-INFO
-src/pygination.egg-info/SOURCES.txt
-src/pygination.egg-info/dependency_links.txt
-src/pygination.egg-info/requires.txt
-src/pygination.egg-info/top_level.txt
