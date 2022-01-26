@@ -14,7 +14,8 @@ from os import path
 # Always prefer setuptools over distutils
 from setuptools import find_packages, setup
 
-VERSION = "0.0.5"
+
+VERSION = "0.0.10"
 NAME = "pygination"
 AUTHOR = "Celsia innovacion"
 AUTHOR_EMAIL = "jdmoralesar@gmail.com"
@@ -47,7 +48,7 @@ setup(
         "Programming Language :: Python :: 3.9",
     ],
     keywords="python pagination",  # Optional
-    packages=[NAME],  # Required
+    packages=find_packages(include=[NAME, f"{NAME}.*"]),  # Required
     python_requires=">=3.6, <3.10",
-    install_requires=["SQLAlchemy"],  # Optional
+    install_requires=["SQLAlchemy", "pydantic"],  # Optional
 )
