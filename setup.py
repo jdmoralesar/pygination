@@ -14,7 +14,7 @@ from os import path
 # Always prefer setuptools over distutils
 from setuptools import find_packages, setup
 
-VERSION = "0.0.3"
+VERSION = "0.0.5"
 NAME = "pygination"
 AUTHOR = "Celsia innovacion"
 AUTHOR_EMAIL = "jdmoralesar@gmail.com"

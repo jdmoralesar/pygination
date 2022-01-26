@@ -1,14 +1,13 @@
 import math
-from sqlalchemy.orm import Query 
 from typing import List, Any
+from wsgiref import validate
+
+from sqlalchemy.orm import Query 
 
 
 class Page(object):
     def __init__(self, items: List[Any] , offset: int, limit: int, total: int) -> None:
-        if offset <= 0:
-            raise AttributeError("offset needs to be >= 1")
-        if limit <= 0:
-            raise AttributeError("limit needs to be >= 1")
+        validate_offset_limit(offset, limit)
         self.items = items
         self.previous_page = None
         self.next_page = None
@@ -38,12 +37,16 @@ class Page(object):
 
         return repr_string
 
-@classmethod
-def paginate(query: Query, offset: int, limit: int) -> Page:
+
+def validate_offset_limit(offset: int, limit: int) -> None:
     if offset <= 0:
         raise AttributeError("offset needs to be >= 1")
     if limit <= 0:
         raise AttributeError("limit needs to be >= 1")
+
+
+def paginate(query: Query, offset: int, limit: int) -> Page:
+    validate_offset_limit(offset, limit)
     total = query.order_by(None).count()
     items = query.limit(limit).offset((offset - 1) * limit).all()
     return Page(items, offset, limit, total)
