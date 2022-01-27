@@ -15,11 +15,11 @@ from os import path
 from setuptools import find_packages, setup
 
 
-VERSION = "0.0.10"
+VERSION = "0.0.13"
 NAME = "pygination"
-AUTHOR = "Celsia innovacion"
+AUTHOR = "Enerbit"
 AUTHOR_EMAIL = "jdmoralesar@gmail.com"
-DESCRIPTION = "Pagination helper"
+DESCRIPTION = "Simple pagination for pydantic models and SQLAlchemy Query objects"
 PROJECT_URL = "https://github.com/jdmoralesar/pygination"
 DOWNLOAD_URL = "https://github.com/jdmoralesar/pygination/archive/refs/tags/0.0.1.tar.gz"
 
@@ -33,22 +33,22 @@ except FileNotFoundError:
     long_description = DESCRIPTION
 
 setup(
-    name=NAME,  # Required
-    version=VERSION,  # Required
-    description=DESCRIPTION,  # Optional
-    long_description=long_description,  # Optional
-    long_description_content_type="text/markdown",  # Optional (see note above)
-    url=PROJECT_URL,  # Optional
+    name=NAME,
+    version=VERSION,
+    description=DESCRIPTION,
+    long_description=long_description,  
+    long_description_content_type="text/markdown",
+    url=PROJECT_URL,
     download_url=DOWNLOAD_URL,
-    author=AUTHOR,  # Optional
-    author_email=AUTHOR_EMAIL,  # Optional
-    classifiers=[  # Optional
+    author=AUTHOR,
+    author_email=AUTHOR_EMAIL,
+    classifiers=[
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
     ],
-    keywords="python pagination",  # Optional
-    packages=find_packages(include=[NAME, f"{NAME}.*"]),  # Required
-    python_requires=">=3.6, <3.10",
-    install_requires=["SQLAlchemy", "pydantic"],  # Optional
+    keywords="python pagination",
+    packages=find_packages(include=[NAME, f"{NAME}.*"]),
+    python_requires=">=3.7, <3.10",
+    install_requires=["SQLAlchemy", "pydantic"],
 )

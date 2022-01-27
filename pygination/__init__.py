@@ -1,1 +1,1 @@
-from pygination.pygination import Page, paginate
+from pygination.pygination import paginate
