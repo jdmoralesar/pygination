@@ -6,22 +6,23 @@ from pygination.errors import PaginationError
 
 
 class Page:
-    def __init__(self, items: List[Any] , offset: int, limit: int, total: int) -> None:
+    def __init__(self, items: List[Any], page: int, size: int, total: int) -> None:
 
-        self.pages = int(math.ceil(total / float(limit)))
-        if offset > self.pages:
-            raise PaginationError("Offset is greater than the number of pages")
-
+        self.pages = int(math.ceil(total / float(size)))
+        if page > self.pages:
+            raise PaginationError("Page is greater than the number of pages")
+        self.page = page
+        self.size = size
         self.items = items
         self.previous_page = None
         self.next_page = None
-        self.has_previous = offset > 1
+        self.has_previous = page > 1
         if self.has_previous:
-            self.previous_page = offset - 1
-        previous_items = (offset - 1) * limit
+            self.previous_page = page - 1
+        previous_items = (page - 1) * size
         self.has_next = previous_items + len(items) < total
         if self.has_next:
-            self.next_page = offset + 1
+            self.next_page = page + 1
         self.total = total
 
     def __repr__(self) -> str:

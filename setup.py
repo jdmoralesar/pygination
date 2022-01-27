@@ -15,7 +15,7 @@ from os import path
 from setuptools import find_packages, setup
 
 
-VERSION = "0.0.13"
+VERSION = "0.0.1"
 NAME = "pygination"
 AUTHOR = "Enerbit"
 AUTHOR_EMAIL = "jdmoralesar@gmail.com"
