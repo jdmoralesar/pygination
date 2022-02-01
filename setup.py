@@ -15,7 +15,7 @@ from os import path
 from setuptools import find_packages, setup
 
 
-VERSION = "0.0.1"
+VERSION = "0.0.5"
 NAME = "pygination"
 AUTHOR = "Enerbit"
 AUTHOR_EMAIL = "jdmoralesar@gmail.com"
@@ -48,7 +48,9 @@ setup(
         "Programming Language :: Python :: 3.9",
     ],
     keywords="python pagination",
-    packages=find_packages(include=[NAME, f"{NAME}.*"]),
+    package_dir={"": "src"},
+    packages=find_packages(where="src"),  # Required
+    package_data={NAME: ["py.typed"]},
     python_requires=">=3.7, <3.10",
     install_requires=["SQLAlchemy", "pydantic"],
 )

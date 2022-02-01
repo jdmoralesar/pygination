@@ -9,17 +9,17 @@ class Page:
     def __init__(self, items: List[Any], page: int, size: int, total: int) -> None:
 
         self.pages = int(math.ceil(total / float(size)))
-        if page > self.pages:
-            raise PaginationError("Page is greater than the number of pages")
+        if page > self.pages - 1:
+            raise PaginationError("Page is greater than the total number of pages")
         self.page = page
         self.size = size
         self.items = items
         self.previous_page = None
         self.next_page = None
-        self.has_previous = page > 1
+        self.has_previous = page > 0
         if self.has_previous:
             self.previous_page = page - 1
-        previous_items = (page - 1) * size
+        previous_items = page * size
         self.has_next = previous_items + len(items) < total
         if self.has_next:
             self.next_page = page + 1
@@ -42,12 +42,12 @@ class Page:
         return repr_string
 
 
-def paginate(query: Query, offset: int, limit: int) -> Page:
-    if offset <= 0:
-        raise AttributeError("offset needs to be >= 1")
-    if limit <= 0:
-        raise AttributeError("limit needs to be >= 1")
+def paginate(query: Query, page: int, size: int) -> Page:
+    if page < 0:
+        raise AttributeError("page needs to be >= 0")
+    if size <= 0:
+        raise AttributeError("size needs to be >= 1")
     total = query.order_by(None).count()
-    query_offset = (offset - 1) * limit
-    items = query.limit(limit).offset(query_offset).all()
-    return Page(items, offset, limit, total)
+    query_page = page * size
+    items = query.limit(size).offset(query_page).all()
+    return Page(items, page, size, total)
