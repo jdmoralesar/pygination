@@ -9,7 +9,7 @@ class Page:
     def __init__(self, items: List[Any], page: int, size: int, total: int) -> None:
 
         self.pages = int(math.ceil(total / float(size)))
-        if page > self.pages - 1:
+        if page > 0 and page > self.pages - 1:
             raise PaginationError("Page is greater than the total number of pages")
         self.page = page
         self.size = size
