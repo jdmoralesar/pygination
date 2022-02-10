@@ -10,7 +10,7 @@ class Page:
 
         self.pages = int(math.ceil(total / float(size)))
         if page > 0 and page > self.pages - 1:
-            raise PaginationError("Page is greater than the total number of pages")
+            raise PaginationError("Page is greater than the total number of pages in the query.")
         self.page = page
         self.size = size
         self.items = items
@@ -21,6 +21,10 @@ class Page:
             self.previous_page = page - 1
         previous_items = page * size
         self.has_next = previous_items + len(items) < total
+
+        if self.has_next and len(self.items) < self.size:
+            raise PaginationError("Invalid query. There are duplicate entries in this page of the query.")
+
         if self.has_next:
             self.next_page = page + 1
         self.total = total
