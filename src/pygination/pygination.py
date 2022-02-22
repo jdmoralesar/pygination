@@ -22,6 +22,9 @@ class Page:
         previous_items = page * size
         self.has_next = previous_items + len(items) < total
 
+        if self.has_next and len(self.items) < self.size:
+            raise PaginationError("Invalid query. There are duplicate entries in this page of the query.")
+
         if self.has_next:
             self.next_page = page + 1
         self.total = total
@@ -48,7 +51,7 @@ def paginate(query: Query, page: int, size: int) -> Page:
         raise AttributeError("page needs to be >= 0")
     if size <= 0:
         raise AttributeError("size needs to be >= 1")
-    total = query.order_by(None).distinct().count()
+    total = query.order_by(None).count()
     query_page = page * size
     items = query.limit(size).offset(query_page).all()
     return Page(items, page, size, total)
