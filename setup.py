@@ -46,11 +46,12 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
     keywords="python pagination",
     package_dir={"": "src"},
     packages=find_packages(where="src"),  # Required
     package_data={NAME: ["py.typed"]},
-    python_requires=">=3.7, <3.10",
+    python_requires=">=3.7, <3.11",
     install_requires=["SQLAlchemy", "pydantic"],
 )
