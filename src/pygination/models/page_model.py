@@ -1,11 +1,11 @@
 from typing import Optional, Sequence, TypeVar, Generic
-from pydantic.generics import GenericModel
+from pydantic import BaseModel
 
 
 T = TypeVar("T")
 
 
-class PageModel(GenericModel, Generic[T]):
+class PageModel(BaseModel, Generic[T]):
     items: Sequence[T]
     page: Optional[int] = None
     size: int = 0

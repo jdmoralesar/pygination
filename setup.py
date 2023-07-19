@@ -15,7 +15,7 @@ from os import path
 from setuptools import find_packages, setup
 
 
-VERSION = "0.0.10"
+VERSION = "0.0.11"
 NAME = "pygination"
 AUTHOR = "Enerbit"
 AUTHOR_EMAIL = "jdmoralesar@gmail.com"
@@ -52,6 +52,6 @@ setup(
     package_dir={"": "src"},
     packages=find_packages(where="src"),  # Required
     package_data={NAME: ["py.typed"]},
-    python_requires=">=3.7, <3.11",
+    python_requires=">=3.7",
     install_requires=["SQLAlchemy", "pydantic"],
 )
