@@ -1,5 +1,5 @@
 from typing import Optional, Sequence, TypeVar, Generic
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 T = TypeVar("T")
@@ -14,6 +14,4 @@ class PageModel(BaseModel, Generic[T]):
     next_page: Optional[int] = None
     previous_page: Optional[int] = None
 
-    class Config:
-        arbitrary_types_allowed = True
-        orm_mode = True
+    model_config = ConfigDict(arbitrary_types_allowed=True, from_attributes=True)
